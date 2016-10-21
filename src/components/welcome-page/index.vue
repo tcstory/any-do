@@ -16,11 +16,18 @@
     width: 100vw;
     height: 100vh;
     padding-top: 30%;
+    background-color: white;
   }
 
   .welcome-page__header {
     text-align: center;
     margin-bottom: 6em;
+    transform: translateY(-30%);
+  }
+
+  .welcome-page.welcome-page--running .welcome-page__header {
+    transform: translateY(0%);
+    transition: transform 600ms;
   }
 
   .welcome-page__hello {
@@ -29,12 +36,19 @@
     color: #0099cc;
     margin-bottom: 1em;
   }
+
   .welcome-page__circle-btn-wrapper {
     width: 3.75em;
     height: 3.75em;
     margin-left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(50%);
   }
+
+  .welcome-page.welcome-page--running .welcome-page__circle-btn-wrapper {
+    transform: translateX(-50%) translateY(0%);
+    transition: transform 600ms;
+  }
+
 </style>
 
 <script>
@@ -45,7 +59,11 @@
     components: {
       'circle-btn': CircleBtn,
     },
-    methods: {
+    methods: {},
+    mounted() {
+      setTimeout(()=> {
+        this.$el.classList.add('welcome-page--running');
+      }, 100);
     }
   }
 </script>
