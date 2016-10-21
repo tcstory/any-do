@@ -29,5 +29,20 @@
 </style>
 
 <script>
+  import _Hammer from 'hammerjs';
+  import propagating from 'propagating-hammerjs';
 
+  const Hammer = propagating(_Hammer);
+
+  export default {
+    mounted: function () {
+      const mc = new Hammer.Manager(this.$el);
+      mc.add(new Hammer.Tap());
+      mc.on('tap', (ev) => {
+        ev.stopPropagation();
+        this.$emit('onbtnclick');
+      });
+
+    }
+  }
 </script>

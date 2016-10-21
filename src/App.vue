@@ -1,7 +1,7 @@
 <template>
   <main id="app">
     <div class="circle-btn-wrapper">
-      <circle-btn></circle-btn>
+      <circle-btn @onbtnclick="onCreateTodo"></circle-btn>
     </div>
   </main>
 </template>
@@ -25,6 +25,11 @@
     name: 'app',
     components: {
       'circle-btn': CircleBtn,
+    },
+    methods: {
+      onCreateTodo() {
+        console.log('create');
+      }
     }
   }
 </script>

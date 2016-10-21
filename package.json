@@ -10,6 +10,8 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "hammerjs": "^2.0.8",
+    "propagating-hammerjs": "^1.4.6",
     "vue": "^2.0.1"
   },
   "devDependencies": {
