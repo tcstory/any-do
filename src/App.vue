@@ -1,8 +1,6 @@
 <template>
   <main id="app">
-    <div class="circle-btn-wrapper">
-      <circle-btn @onbtnclick="onCreateTodo"></circle-btn>
-    </div>
+    <welcome-page></welcome-page>
   </main>
 </template>
 
@@ -12,24 +10,17 @@
     height: 100vh;
     width: 100vw;
   }
-  .circle-btn-wrapper {
-    width: 3.75em;
-    height: 3.75em;
-  }
 </style>
 
 <script>
-  import CircleBtn from './components/circle-btn';
+  import WelcomePage from './components/welcome-page';
 
   export default {
     name: 'app',
     components: {
-      'circle-btn': CircleBtn,
+      'welcome-page': WelcomePage,
     },
     methods: {
-      onCreateTodo() {
-        console.log('create');
-      }
     }
   }
 </script>
