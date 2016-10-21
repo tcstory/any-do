@@ -1,9 +1,10 @@
-import Vue from 'vue'
-import App from './App'
+import Vue from 'vue';
+import App from './App';
 
-/* eslint-disable no-new */
+require('./index.scss');
+
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App }
+  components: {App}
 })
