@@ -23,6 +23,7 @@
 </style>
 
 <script>
+  import store from './components/store';
 
   export default {
     name: 'app',
@@ -31,11 +32,11 @@
         curComponent: '',
       }
     },
+    store,
     components: {
-//      'welcome-page': function (resolve) {
-//        require(['./components/welcome-page'], resolve);
-//      },
-      'welcome-page': require('./components/welcome-page')
+      'welcome-page': function (resolve) {
+        require(['./components/welcome-page'], resolve);
+      },
     },
     methods: {
 

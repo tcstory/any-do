@@ -5,7 +5,7 @@
       <p>轻击加号键,以添加您的首页任务</p>
     </header>
     <div class="welcome-page__circle-btn-wrapper">
-      <circle-btn></circle-btn>
+      <circle-btn @onbtnclick="addTodoAdding"></circle-btn>
     </div>
   </section>
 </template>
@@ -53,13 +53,18 @@
 
 <script>
   import CircleBtn from '../circle-btn';
+  import * as types from '../../components/store/types';
 
   export default {
     name: 'welcomePage',
     components: {
       'circle-btn': CircleBtn,
     },
-    methods: {},
+    methods: {
+      addTodoAdding() {
+        this.$store.dispatch(types.ADD_TODO_ADDING);
+      }
+    },
     mounted() {
       setTimeout(()=> {
         this.$el.classList.add('welcome-page--running');

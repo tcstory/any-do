@@ -12,7 +12,8 @@
   "dependencies": {
     "hammerjs": "^2.0.8",
     "propagating-hammerjs": "^1.4.6",
-    "vue": "^2.0.1"
+    "vue": "^2.0.1",
+    "vuex": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
