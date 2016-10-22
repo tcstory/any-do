@@ -32,6 +32,11 @@
         curComponent: '',
       }
     },
+    computed: {
+      isFirstTime() {
+        return store.state.isFirstTime;
+      }
+    },
     store,
     components: {
       'welcome-page': function (resolve) {
@@ -42,17 +47,9 @@
 
     },
     mounted() {
-      if (isFirstTime()) {
+      if (this.isFirstTime) {
         this.curComponent = 'welcome-page';
       }
-    }
-  }
-
-  function isFirstTime() {
-    if (localStorage.getItem('new-to-any-do') !== '1') {
-      return true;
-    } else {
-      return false;
     }
   }
 
