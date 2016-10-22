@@ -1,5 +1,5 @@
 <template>
-  <div class="circle-btn">
+  <div :class="{'circle-btn': true, 'circle-btn--shadow': getBtnEffect}">
   </div>
 </template>
 
@@ -9,7 +9,6 @@
     height: 100%;
     background-color: #0099CC;
     border-radius: 50%;
-    box-shadow: 0 .25em .5em rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,6 +23,10 @@
         rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 45%, white 45%,white 55%,rgba(255, 255, 255, 0) 55%),
       linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 45%, white 45%,white 55%,rgba(255, 255, 255, 0) 55%);
     }
+
+    &.circle-btn--shadow {
+      box-shadow: 0 .25em .5em rgba(0, 0, 0, 0.4);
+    }
   }
 
 </style>
@@ -34,7 +37,26 @@
 
   const Hammer = propagating(_Hammer);
 
+  const effect = {
+    shadow: 1,
+    noShadow: 0,
+  }
+
   export default {
+    computed: {
+      getBtnEffect() {
+        if (this.btnEffect === effect.shadow) {
+          return true;
+        }
+        return false;
+      }
+    },
+    props: {
+      'btnEffect': {
+        type: Number,
+        default: effect.noShadow,
+      }
+    },
     mounted: function () {
       const mc = new Hammer.Manager(this.$el);
       mc.add(new Hammer.Tap());
