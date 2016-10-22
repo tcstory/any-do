@@ -5,7 +5,7 @@
       <p>轻击加号键,以添加您的首页任务</p>
     </header>
     <div class="welcome-page__circle-btn-wrapper">
-      <circle-btn @onbtnclick="addTodoAdding"></circle-btn>
+      <circle-btn @onbtnclick="addTodoAdding" :btnEffect="btnEffect.shadow"></circle-btn>
     </div>
   </section>
 </template>
@@ -57,6 +57,14 @@
 
   export default {
     name: 'welcomePage',
+    data: function () {
+      return {
+        btnEffect: {
+          shadow: 1,
+          noShadow: 0,
+        }
+      }
+    },
     components: {
       'circle-btn': CircleBtn,
     },

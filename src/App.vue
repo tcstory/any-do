@@ -29,7 +29,7 @@
     name: 'app',
     data: function () {
       return {
-        curComponent: '',
+        curComponent: 'edit-page',
       }
     },
     computed: {
@@ -42,14 +42,17 @@
       'welcome-page': function (resolve) {
         require(['./components/welcome-page'], resolve);
       },
+      'edit-page': function (resolve) {
+        require(['./components/edit-page'], resolve);
+      },
     },
     methods: {
 
     },
     mounted() {
-      if (this.isFirstTime) {
-        this.curComponent = 'welcome-page';
-      }
+//      if (this.isFirstTime) {
+//        this.curComponent = 'welcome-page';
+//      }
     }
   }
 
