@@ -29,6 +29,9 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: './src/index.html',
       inject: true
-    })
+    }),
+    new webpack.DefinePlugin({
+      __DEV__: true
+    }),
   ]
 })
