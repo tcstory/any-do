@@ -29,7 +29,7 @@
     name: 'app',
     data: function () {
       return {
-        curComponent: 'edit-page',
+        curComponent: 'calendar',
       }
     },
     computed: {
@@ -45,6 +45,9 @@
       'edit-page': function (resolve) {
         require(['./components/edit-page'], resolve);
       },
+      'calendar': function (resolve) {
+        require(['./components/calendar'], resolve);
+      }
     },
     methods: {
 
