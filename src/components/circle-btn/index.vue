@@ -64,7 +64,6 @@
         ev.stopPropagation();
         this.$emit('onbtnclick');
       });
-
     }
   }
 </script>
