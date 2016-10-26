@@ -10,6 +10,20 @@ var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
+    preLoaders: [
+      {
+        test: /\.vue$/,
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules/
+      }
+    ],
     loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
