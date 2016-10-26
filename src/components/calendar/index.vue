@@ -256,8 +256,20 @@
     height: 100%;
     position: relative;
     &.calendar-stage__date--cur {
-      background-image: radial-gradient(circle ,#16AE94,#16AE94 60%, transparent 60%);
       color: white;
+    }
+    &.calendar-stage__date--cur::before {
+      content: '';
+      display: block;
+      height: 2em;
+      width: 2em;
+      background-color: #16AE94;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -1em;
+      margin-top: -1em;
     }
     &.calendar-stage__date--inactive {
       color: #d4d4d4;
