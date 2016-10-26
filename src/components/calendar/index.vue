@@ -33,7 +33,6 @@
         <div class="calendar-stage__date-title">四</div>
         <div class="calendar-stage__date-title">五</div>
         <div class="calendar-stage__date-title">六</div>
-        <div class="calendar-stage__date-title">七</div>
       </header>
       <section class="calendar-stage__main">
         <div class="calendar-stage__row">
