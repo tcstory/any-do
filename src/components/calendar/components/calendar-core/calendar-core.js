@@ -81,9 +81,9 @@ function calcDates(cur) {
     return dates;
   }
 
-  const y = cur.getFullYear();
-  const m = cur.getMonth();
-  const d = cur.getDate();
+  const y = cur.getFullYear(); // 当年
+  const m = cur.getMonth(); // 当月
+  const d = cur.getDate(); // 当天
   const firstDayOfMonth = (new Date(y, m, 1)).getDay(); // 当月第一天是星期几
   const sumOfDates = (new Date(y, m + 1, 0)).getDate(); // 这个月有多少天
 
@@ -93,7 +93,8 @@ function calcDates(cur) {
     dates[i] = {
       date: i + 1,
       day: c.get(),
-      selected: false,
+      today: d === (i + 1),
+      selected: false || (d === (i + 1)),
       inactive: d > (i + 1),
     };
     c.update();
