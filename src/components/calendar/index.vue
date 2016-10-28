@@ -11,16 +11,16 @@
       </div>
       <p class="calendar-header__date-string">
         <span class="calendar-header__date-string-text">
-          2016-03-02
+          {{dateStringText}}
         </span>
       </p>
     </header>
     <div class="calendar__month-selector">
-      <div class="calendar__month-selector-btn calendar__month-selector-btn-left">
+      <div ref="prevMonth" class="calendar__month-selector-btn calendar__month-selector-btn-left">
         <i class="fa fa-arrow-left" aria-hidden="true"></i>
       </div>
-      <p class="calendar__month-selector-text">March</p>
-      <div class="calendar__month-selector-btn calendar__month-selector-btn-right">
+      <!--<p class="calendar__month-selector-text">March</p>-->
+      <div ref="nextMonth" class="calendar__month-selector-btn calendar__month-selector-btn-right">
         <i class="fa fa-arrow-right" aria-hidden="true"></i>
       </div>
     </div>
@@ -35,119 +35,12 @@
         <div class="calendar-stage__date-title">六</div>
       </header>
       <section class="calendar-stage__main">
-        <div class="calendar-stage__row">
-          <div class="calendar-stage__date calendar-stage__date--inactive">
-            <div class="calendar-stage__date-text">28</div>
-          </div>
-          <div class="calendar-stage__date calendar-stage__date--inactive">
-            <div class="calendar-stage__date-text">29</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">1</div>
-          </div>
-          <div class="calendar-stage__date calendar-stage__date--cur">
-            <div class="calendar-stage__date-text">2</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">3</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">4</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">5</div>
-          </div>
-        </div>
-        <div class="calendar-stage__row">
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">6</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">7</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">8</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">9</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">10</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">11</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">12</div>
-          </div>
-        </div>
-        <div class="calendar-stage__row">
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">13</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">14</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">15</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">16</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">17</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">18</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">19</div>
-          </div>
-        </div>
-        <div class="calendar-stage__row">
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">20</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">21</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">22</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">23</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">24</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">25</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">26</div>
-          </div>
-        </div>
-        <div class="calendar-stage__row">
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">27</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">28</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">29</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">30</div>
-          </div>
-          <div class="calendar-stage__date">
-            <div class="calendar-stage__date-text">31</div>
-          </div>
-          <div class="calendar-stage__date calendar-stage__date--inactive">
-            <div class="calendar-stage__date-text">1</div>
-          </div>
-          <div class="calendar-stage__date calendar-stage__date--inactive">
-            <div class="calendar-stage__date-text">2</div>
+        <div v-for="row in dates" class="calendar-stage__row">
+          <div v-for="date in row" :class="{'calendar-stage__date': true,
+          'calendar-stage__date--selected': date.selected,
+          'calendar-stage__date--today': date.today,
+          'calendar-stage__date--inactive': date.inactive}">
+            <div class="calendar-stage__date-text">{{date.date}}</div>
           </div>
         </div>
       </section>
@@ -255,10 +148,10 @@
     flex-grow: 1;
     height: 100%;
     position: relative;
-    &.calendar-stage__date--cur {
+    &.calendar-stage__date--selected {
       color: white;
     }
-    &.calendar-stage__date--cur::before {
+    &.calendar-stage__date--selected::before {
       content: '';
       display: block;
       height: 2em;
@@ -270,9 +163,24 @@
       top: 50%;
       margin-left: -1em;
       margin-top: -1em;
+      box-sizing: border-box;
     }
     &.calendar-stage__date--inactive {
       color: #d4d4d4;
+    }
+    &.calendar-stage__date--today::before {
+      content: '';
+      display: block;
+      height: 2em;
+      width: 2em;
+      border: 0.125em solid #16AE94;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -1em;
+      margin-top: -1em;
+      box-sizing: border-box;
     }
   }
 
@@ -288,7 +196,57 @@
 </style>
 
 <script>
+  import _Hammer from 'hammerjs';
+  import propagating from 'propagating-hammerjs';
+
+  import Calendar from './components/calendar-core/';
+
+  const Hammer = propagating(_Hammer);
+
+  let c = null;
+
   export default {
     name: 'Calendar',
+    props: {
+      curTimeStamp: {
+        type: Number,
+        default: 0,
+      }
+    },
+    data: function () {
+      return {
+        dates: [],
+        dateStringText: ''
+      }
+    },
+    methods: {
+      handlePrevMonth() {
+        this.dates = c.prevMonth();
+        this.dateStringText = c.toString();
+      },
+      handleNextMonth() {
+        this.dates = c.nextMonth();
+        this.dateStringText = c.toString();
+      },
+    },
+    created() {
+      c = Calendar(this.curTimeStamp);
+      this.dates = c.getDates();
+      this.dateStringText = c.toString();
+    },
+    mounted() {
+      let mc = new Hammer.Manager(this.$refs.prevMonth);
+      mc.add(new Hammer.Tap());
+      mc.on('tap', (ev) => {
+        ev.stopPropagation();
+        this.handlePrevMonth();
+      });
+      mc = new Hammer.Manager(this.$refs.nextMonth);
+      mc.add(new Hammer.Tap());
+      mc.on('tap', (ev) => {
+        ev.stopPropagation();
+        this.handleNextMonth();
+      });
+    }
   }
 </script>

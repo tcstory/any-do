@@ -1,7 +1,7 @@
 <template>
   <main id="app">
     <transition name="fade">
-      <component :is="curComponent"></component>
+      <component :is="curComponent" :cur-time-stamp="curTimeStamp"></component>
     </transition>
   </main>
 </template>
@@ -30,6 +30,7 @@
     data: function () {
       return {
         curComponent: 'calendar',
+        curTimeStamp: Date.now(),
       }
     },
     computed: {
