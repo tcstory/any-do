@@ -1,4 +1,4 @@
-function calcDates(cur) {
+function outputDates(cur) {
 
   /**
    * 推算上/下一天是星期几
@@ -49,8 +49,8 @@ function calcDates(cur) {
       dates.push({
         date: i + 1,
         day: c.get(),
-        selected: false,
-        inactive: true,
+        d: new Date(y, m + 1, i + 1),
+        belong: 'next', // 标示是不是这个月的天数
       });
       c.update();
     }
@@ -72,8 +72,8 @@ function calcDates(cur) {
       dates.unshift({
         date: date,
         day: c.get(),
-        selected: false,
-        inactive: true,
+        d: new Date(y, m - 1, date),
+        belong: 'prev',
       });
       date--;
       c.update();
@@ -83,7 +83,6 @@ function calcDates(cur) {
 
   const y = cur.getFullYear(); // 当年
   const m = cur.getMonth(); // 当月
-  const d = cur.getDate(); // 当天
   const firstDayOfMonth = (new Date(y, m, 1)).getDay(); // 当月第一天是星期几
   const sumOfDates = (new Date(y, m + 1, 0)).getDate(); // 这个月有多少天
 
@@ -93,9 +92,8 @@ function calcDates(cur) {
     dates[i] = {
       date: i + 1,
       day: c.get(),
-      today: d === (i + 1),
-      selected: false || (d === (i + 1)),
-      inactive: d > (i + 1),
+      d: new Date(y, m, i + 1),
+      belong: 'cur',
     };
     c.update();
   }
@@ -105,26 +103,16 @@ function calcDates(cur) {
 }
 
 export default function (timeString) {
-  let cur = new Date(timeString);
-  let dates = calcDates(cur);
+  let cur;
+  if (timeString instanceof Date) {
+    cur = timeString;
+  } else {
+    cur = new Date(timeString);
+  }
   return {
     getDates() {
-      return dates;
+      return outputDates(cur);
     },
-    getDatesIn2d() {
-      let sum = dates.length;
-      let data = [];
-      let _dates = [];
-      for (let i = 0; i < sum; i++) {
-        if ((i + 1) % 7 !== 0) {
-          data.push(dates[i]);
-        } else {
-          data.push(dates[i]);
-          _dates.push(data);
-          data = [];
-        }
-      }
-      return _dates;
-    }
+    dateObj: cur,
   }
 }
