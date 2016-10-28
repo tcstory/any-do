@@ -1,4 +1,4 @@
-import dateformater from 'dateformater-tc';
+import dateFormater from 'dateformater-tc';
 
 import Calendar from './calendar-core';
 
@@ -96,7 +96,7 @@ function proxyCalendar(curTimeStamp) {
       );
     },
     toString() {
-      return (new dateformater(calendar.dateObj.getTime())).format('yyyy-MM');
+      return (dateFormater(calendar.dateObj.getTime())).format('yyyy-MM');
     }
   }
 

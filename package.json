@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "dateformater-tc": "^0.1.0",
+    "dateformater-tc": "^0.2.0",
     "hammerjs": "^2.0.8",
     "propagating-hammerjs": "^1.4.6",
     "vue": "^2.0.1",
